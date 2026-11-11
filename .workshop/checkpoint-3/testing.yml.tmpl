@@ -1,0 +1,51 @@
+name: Python package
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.15
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
+        with:
+          python-version: "3.15"
+
+      - name: Install dependencies
+        run: |
+          pip install -r .github/workflows/requirements/testing.txt --require-hashes
+          pip install -r requirements.txt --require-hashes
+          pip install --no-deps --no-build-isolation -e .
+
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --statistics --show-source \
+            --select=E9,F63,F7,F82
+
+          # exit-zero treats all errors as warnings.
+          flake8 . --count --statistics --exit-zero \
+            --max-complexity=10 \
+            --max-line-length=88
+
+      - name: Test with pytest
+        run: |
+          python -m pytest

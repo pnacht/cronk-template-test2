@@ -1,0 +1,21 @@
+name: Awesome PR Greeting
+
+on:
+  push:
+    branches: ["main"]
+  pull_request_target:
+    types: [opened, synchronize]
+
+permissions: write-all
+
+jobs:
+  greet:
+    name: Greet contributor
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log pull request details
+        run: |
+          echo "Checking PR: ${{ github.event.pull_request.body }}"

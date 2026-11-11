@@ -1,0 +1,47 @@
+[project]
+name = "cronk"
+version = "0.0.1"
+description = "A crontab-json translator"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["json", "cron", "crontab"]
+
+authors = [
+  {name = "Alice Doe", email = "alice@cottonwood.edu"}
+]
+
+maintainers = [
+  {name = "Alice Doe", email = "alice@cottonwood.edu"}
+]
+
+# For a list of valid classifiers, see https://pypi.org/classifiers/
+classifiers = [  # Optional
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Education",
+  "Topic :: Software Development",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+  "loguru==0.5.2",
+  "babel==2.9.0"
+]
+
+[project.urls]  # Optional
+"Homepage" = "https://github.com/nebraska-dev/cronk"
+"Bug Reports" = "https://github.com/nebraska-dev/cronk/issues"
+"Source" = "https://github.com/nebraska-dev/cronk/"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
